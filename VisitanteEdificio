@@ -1,0 +1,64 @@
+import java.util.Scanner;
+
+public class VisitanteEdificio {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        byte edad;
+        short numeroDepartamento;
+        int identificacion;
+        long telefono;
+        float temperaturaCorporal;
+        double altura;
+        char genero;
+        boolean tieneAutorizacion;
+        int totalVisitas = 0;
+        double tiempoTotal = 0;
+
+        System.out.print("Ingrese la edad: ");
+        edad = scanner.nextByte();
+        System.out.print("Ingrese el número de departamento: ");
+        numeroDepartamento = scanner.nextShort();
+        System.out.print("Ingrese la identificación: ");
+        identificacion = scanner.nextInt();
+        System.out.print("Ingrese el teléfono: ");
+        telefono = scanner.nextLong();
+        System.out.print("Ingrese la temperatura corporal: ");
+        temperaturaCorporal = scanner.nextFloat();
+        System.out.print("Ingrese la altura en metros: ");
+        altura = scanner.nextDouble();
+        System.out.print("Ingrese el género (M/F): ");
+        genero = scanner.next().charAt(0);
+        System.out.print("¿Tiene autorización? (true/false): ");
+        tieneAutorizacion = scanner.nextBoolean();
+
+        System.out.println("Ingrese los tiempos de estadía (en minutos) de cada visita durante una semana (máximo 7 visitas):");
+        for (int i = 0; i < 7; i++) {
+            System.out.print("Duración de la visita " + (i + 1) + " (ingrese 0 para finalizar): ");
+            double tiempoVisita = scanner.nextDouble();
+            if (tiempoVisita == 0) {
+                break;
+            }
+            tiempoTotal += tiempoVisita;
+            totalVisitas++;
+        }
+
+        double tiempoPromedio = (totalVisitas > 0) ? tiempoTotal / totalVisitas : 0;
+        String mayoriaEdad = (edad >= 18) ? "Mayor de edad" : "Menor de edad";
+
+        System.out.println("\nInformación del Visitante:");
+        System.out.println("Edad: " + edad);
+        System.out.println("Número de Departamento: " + numeroDepartamento);
+        System.out.println("Identificación: " + identificacion);
+        System.out.println("Teléfono: " + telefono);
+        System.out.println("Temperatura Corporal: " + temperaturaCorporal + "°C");
+        System.out.println("Altura: " + altura + "m");
+        System.out.println("Género: " + genero);
+        System.out.println("Tiene Autorización: " + tieneAutorizacion);
+        System.out.println("Total de visitas en la semana: " + totalVisitas);
+        System.out.println("Tiempo promedio de estadía: " + tiempoPromedio + " minutos");
+        System.out.println("Condición de edad: " + mayoriaEdad);
+        
+        scanner.close();
+    }
+}
